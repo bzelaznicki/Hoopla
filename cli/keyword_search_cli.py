@@ -16,7 +16,7 @@ def main() -> None:
     match args.command:
         case "search":
             print(f"Searching for: {args.query}")
-            found_movies = search_command(args.query)
+            found_movies = search_command(args.query )
             
             for idx, item in enumerate(found_movies): 
                 print(f"{idx+1}: {item}")
