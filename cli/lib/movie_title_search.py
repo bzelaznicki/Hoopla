@@ -1,5 +1,6 @@
 import string
 from .search_utils import (load_movies, DEFAULT_SEARCH_LIMIT, load_stopwords)
+from nltk.stem import PorterStemmer
 
 def search_command(query: str, limit: int = DEFAULT_SEARCH_LIMIT):
 
@@ -28,13 +29,16 @@ def process_text(text: str) -> str:
 
 
 def split_text(text: str) -> list[str]:
+    stemmer = PorterStemmer()
     tokens = text.split()
     stopwords = load_stopwords()
     text_tokens = []
     for token in tokens:
+        token = stemmer.stem(token)
         if token in stopwords:
             continue
         if token:
+            
             text_tokens.append(token)
     return text_tokens 
 
