@@ -7,7 +7,7 @@ def search_command(query: str, limit: int = DEFAULT_SEARCH_LIMIT):
     movies = load_movies()
 
     for movie in movies:
-        if query in movie['title']:
+        if query.lower() in movie['title'].lower():
 
             found_movies.append(movie['title'])
             if len(found_movies) >= limit:
