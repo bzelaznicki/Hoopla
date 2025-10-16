@@ -1,5 +1,5 @@
 import string
-from .search_utils import (load_movies, DEFAULT_SEARCH_LIMIT)
+from .search_utils import (load_movies, DEFAULT_SEARCH_LIMIT, load_stopwords)
 
 def search_command(query: str, limit: int = DEFAULT_SEARCH_LIMIT):
 
@@ -29,9 +29,11 @@ def process_text(text: str) -> str:
 
 def split_text(text: str) -> list[str]:
     tokens = text.split()
-    
+    stopwords = load_stopwords()
     text_tokens = []
     for token in tokens:
+        if token in stopwords:
+            continue
         if token:
             text_tokens.append(token)
     return text_tokens 
