@@ -2,8 +2,7 @@
 
 import argparse
 
-from lib.movie_title_search import search_command 
-from lib.inverted_index import InvertedIndex
+from lib.movie_title_search import search_command, build_command
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Keyword Search CLI")
@@ -24,15 +23,7 @@ def main() -> None:
                 print(f"{idx+1}: {item}")
                 
         case "build":
-            print("Building index...")
-            index = InvertedIndex()
-
-            index.build()
-            index.save()
-
-            print("Done building index!")
-            docs = index.get_documents("merida")
-            print(f"First document for token 'merida' = {docs[0]}")
+            build_command()        
         case _:
             parser.print_help()
 
